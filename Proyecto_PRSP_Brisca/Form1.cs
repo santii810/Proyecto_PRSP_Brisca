@@ -28,6 +28,8 @@ namespace Proyecto_PRSP_Brisca
         Jugada jugada = new Jugada();
         List<string> mazoJug1 = new List<string>();
         List<string> mazoJug2 = new List<string>();
+        int puntosJug1 = 0;
+        int puntosJug2 = 0;
 
         public Form1()
         {
@@ -75,6 +77,27 @@ namespace Proyecto_PRSP_Brisca
             turno++;
             if (turno > 2) turno -= 2;
         }
+
+        private int obtenerNumero(string carta)
+        {
+            return Int32.Parse(carta.Remove(carta.Length - 1));
+        }
+
+        private int recuento(List<string> mazo)
+        {
+            int retorno = 0;
+            foreach (string item in mazo)
+            {
+                if (obtenerNumero(item) == 1) retorno += 11;
+                if (obtenerNumero(item) == 3) retorno += 10;
+                if (obtenerNumero(item) == 8) retorno += 2;
+                if (obtenerNumero(item) == 9) retorno += 3;
+                if (obtenerNumero(item) == 10) retorno += 4;
+            }
+            return retorno;
+        }
+
+
         private void ManejarCliente(TcpClient cli)
         {
             string data;
@@ -91,7 +114,6 @@ namespace Proyecto_PRSP_Brisca
             sw.WriteLine("$ULTIMO_TURNO");
             sw.WriteLine("$TRIUNFO$");
             sw.WriteLine("$CARTAS_RESTANTES$");
-            sw.WriteLine("$RECUENTO$");
             sw.WriteLine("$RESULTADO$");
             sw.Flush();
             while (true)
@@ -248,24 +270,32 @@ namespace Proyecto_PRSP_Brisca
 
                         #region coger carta
                         case "COGER_CARTA":
-                            if (jug1.id == cli.Client.RemoteEndPoint.ToString())
+                            if (baraja.Count == 0)
                             {
-                                while (turno != 1) Thread.Sleep(1000);
-                                jug1.cartas.Add(baraja.Dequeue());
-                                siguienteTurno();
-
-                                sw.WriteLine("$OK${0}$", jug1.cartas.Last());
+                                sw.WriteLine("$NOK$Mazo finalizado$");
                                 sw.Flush();
                             }
-                            if (jug2.id == cli.Client.RemoteEndPoint.ToString())
+                            else
                             {
-                                while (turno != 2) Thread.Sleep(1000);
+                                if (jug1.id == cli.Client.RemoteEndPoint.ToString())
+                                {
+                                    while (turno != 1) Thread.Sleep(1000);
+                                    jug1.cartas.Add(baraja.Dequeue());
+                                    siguienteTurno();
 
-                                jug2.cartas.Add(baraja.Dequeue());
-                                siguienteTurno();
+                                    sw.WriteLine("$OK${0}$", jug1.cartas.Last());
+                                    sw.Flush();
+                                }
+                                if (jug2.id == cli.Client.RemoteEndPoint.ToString())
+                                {
+                                    while (turno != 2) Thread.Sleep(1000);
 
-                                sw.WriteLine("$OK${0}$", jug2.cartas.Last());
-                                sw.Flush();
+                                    jug2.cartas.Add(baraja.Dequeue());
+                                    siguienteTurno();
+
+                                    sw.WriteLine("$OK${0}$", jug2.cartas.Last());
+                                    sw.Flush();
+                                }
                             }
                             break;
                         #endregion
@@ -295,22 +325,10 @@ namespace Proyecto_PRSP_Brisca
 
                         #region recuento
                         case "RESULTADO":
-                            if (jug1.id == cli.Client.RemoteEndPoint.ToString())
-                            {
-
-                                sw.WriteLine();
-                                sw.Flush();
-                            }
-                            if (jug2.id == cli.Client.RemoteEndPoint.ToString())
-                            {
-
-                                sw.WriteLine();
-                                sw.Flush();
-                            }
+                            sw.WriteLine("$OK${0}${1}$",puntosJug1,puntosJug2);
+                            sw.Flush();
                             break;
                         #endregion
-
-
 
                         default:
                             break;
@@ -322,8 +340,13 @@ namespace Proyecto_PRSP_Brisca
                     Console.WriteLine("Error: {0}", error.ToString());
                     break;
                 }
-            }
 
+                if (mazoJug1.Count + mazoJug2.Count == 40)
+                {
+                    puntosJug1 = recuento(mazoJug1);
+                    puntosJug2 = recuento(mazoJug2);
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
