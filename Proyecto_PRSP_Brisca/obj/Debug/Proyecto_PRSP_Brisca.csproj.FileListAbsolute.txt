@@ -1,0 +1,9 @@
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Proyecto_PRSP_Brisca\bin\Debug\Proyecto_PRSP_Brisca.exe.config
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Proyecto_PRSP_Brisca\obj\Debug\Proyecto_PRSP_Brisca.csprojResolveAssemblyReference.cache
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Proyecto_PRSP_Brisca\obj\Debug\Proyecto_PRSP_Brisca.Form1.resources
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Proyecto_PRSP_Brisca\obj\Debug\Proyecto_PRSP_Brisca.Properties.Resources.resources
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Proyecto_PRSP_Brisca\obj\Debug\Proyecto_PRSP_Brisca.csproj.GenerateResource.Cache
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Proyecto_PRSP_Brisca\bin\Debug\Proyecto_PRSP_Brisca.exe
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Proyecto_PRSP_Brisca\bin\Debug\Proyecto_PRSP_Brisca.pdb
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Proyecto_PRSP_Brisca\obj\Debug\Proyecto_PRSP_Brisca.exe
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Proyecto_PRSP_Brisca\obj\Debug\Proyecto_PRSP_Brisca.pdb
