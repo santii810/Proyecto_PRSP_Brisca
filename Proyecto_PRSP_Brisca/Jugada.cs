@@ -46,7 +46,7 @@ namespace Proyecto_PRSP_Brisca
         }
         private int obtenerNumero(string carta)
         {
-            return Int32.Parse(cartaJug2.Remove(carta.Length - 1));
+            return Int32.Parse(carta.Remove(carta.Length - 1));
         }
         private bool esTriunfo(string carta)
         {
