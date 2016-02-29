@@ -1,0 +1,32 @@
+﻿<Window x:Class="Cliente.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cliente"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <WrapPanel Name="panelRegistro" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Visibility="Collapsed">
+            <Label Content="Nombre:" Width="100"/>
+            <TextBox Name="textBoxNombre" Width="150"/>
+            <Label Content="Edad" Width="100"/>
+            <TextBox Name="textBoxEdad" Width="150"/>
+            <Label Content="Sexo" Width="100"/>
+            <RadioButton GroupName="grupoSexo" Name="radioButtonMasculino" Content="Hombre"/>
+            <RadioButton GroupName="grupoSexo" Name="radioButtonFemenino" Content="Mujer"/>
+            <Button Content="Inscribir" Name="buttonInscribir" Width="100" Margin="0,0,0,0" Click="buttonInscribir_Click"/>
+            <TextBox Name="textBoxIp" Width="150" Text="127.0.0.1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        </WrapPanel>
+        <StackPanel Name="panelConectando" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+            <Label Content="Conectando"  FontSize="40" ></Label>
+        </StackPanel>
+        <DockPanel Name="panelJuego">
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
+                
+            </StackPanel>
+        </DockPanel>
+        <StackPanel HorizontalAlignment="Left" Height="100" Margin="-325,210,0,0" VerticalAlignment="Top" Width="100"/>
+    </Grid>
+</Window>
