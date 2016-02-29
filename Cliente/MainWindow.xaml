@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
+        <StackPanel Name="panelConectar" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Name="textBoxIp" Width="80" Text="127.0.0.1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox Name="textBoxPuerto" Width="40" Text="2000" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Button Content="Conectar" Name="buttonConectar" Click="buttonConectar_Click"/>
+
+        </StackPanel>
         <WrapPanel Name="panelRegistro" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Visibility="Collapsed">
             <Label Content="Nombre:" Width="100"/>
             <TextBox Name="textBoxNombre" Width="150"/>
@@ -15,16 +23,36 @@
             <Label Content="Sexo" Width="100"/>
             <RadioButton GroupName="grupoSexo" Name="radioButtonMasculino" Content="Hombre"/>
             <RadioButton GroupName="grupoSexo" Name="radioButtonFemenino" Content="Mujer"/>
-            <Button Content="Inscribir" Name="buttonInscribir" Width="100" Margin="0,0,0,0" Click="buttonInscribir_Click"/>
-            <TextBox Name="textBoxIp" Width="150" Text="127.0.0.1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button Content="Inscribir" Name="buttonInscribir" Click="buttonInscribir_Click"/>
+
 
         </WrapPanel>
-        <StackPanel Name="panelConectando" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
-            <Label Content="Conectando"  FontSize="40" ></Label>
+        <StackPanel Name="panelEsperando" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+            <Label Content="Esperando al otro jugador"  FontSize="40" ></Label>
         </StackPanel>
-        <DockPanel Name="panelJuego">
-            <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
-                
+        <StackPanel Name="panelIniciar" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed">
+            <Label Content="Jugadores online" FontSize="20"></Label>
+            <Button Name="buttonIniciar" Content="Iniciar" FontSize="26.667" Click="buttonIniciar_Click"/>
+        </StackPanel>
+        <DockPanel Name="panelJuego" Visibility="Visible">
+            <StackPanel Name="panelBotones" Orientation="Vertical" DockPanel.Dock="Right">
+                <Button Name="echarCarta" Content="Echar carta"></Button>
+                <Button Name="ultimaJugada" Content="Ultima jugada"></Button>
+            </StackPanel>
+            <StackPanel Name="infoPanel" DockPanel.Dock="Top" Orientation="Horizontal">
+                <Label Content="Triunfo: "/>
+                <Label Name="labelTriunfo" Content="***"/>
+            </StackPanel>
+            <StackPanel Name="panelCuerpoJuego">
+                <StackPanel Name="panelMesa">
+
+                </StackPanel>
+                <StackPanel Name="panelMano" Orientation="Horizontal">
+                    <Label Name="carta1" />
+                    <Label Name="carta2"/>
+                    <Label Name="carta3"/>
+
+                </StackPanel>
             </StackPanel>
         </DockPanel>
         <StackPanel HorizontalAlignment="Left" Height="100" Margin="-325,210,0,0" VerticalAlignment="Top" Width="100"/>

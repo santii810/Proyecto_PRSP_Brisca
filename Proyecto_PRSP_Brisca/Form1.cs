@@ -38,6 +38,8 @@ namespace Proyecto_PRSP_Brisca
 
         /* Inserto las cartas de la baraja española representando un simbolo a cada palo
         */
+        #region metodos privador
+
         #region barajar
         private void barajar()
         {
@@ -78,6 +80,19 @@ namespace Proyecto_PRSP_Brisca
             if (turno > 2) turno -= 2;
         }
 
+        private void registrarJugador(TcpClient cli, string[] subdatos)
+        {
+            jug1.nombre = subdatos[2];
+            int edad;
+            int.TryParse(subdatos[3], out edad);
+            jug1.edad = edad;
+            jug1.sexo = subdatos[4];
+            jug1.id = cli.Client.RemoteEndPoint.ToString();
+            jug1.ip = jug1.id.Split(':')[0];
+            jug1.puerto = subdatos[4];
+            jugadoresInscritos++;
+        }
+
         private int obtenerNumero(string carta)
         {
             return Int32.Parse(carta.Remove(carta.Length - 1));
@@ -96,6 +111,7 @@ namespace Proyecto_PRSP_Brisca
             }
             return retorno;
         }
+        #endregion
 
 
         private void ManejarCliente(TcpClient cli)
@@ -104,7 +120,7 @@ namespace Proyecto_PRSP_Brisca
             NetworkStream ns = cli.GetStream();
             StreamReader sr = new StreamReader(ns);
             StreamWriter sw = new StreamWriter(ns);
-
+            /*
             sw.WriteLine("$REGISTRAR$nombre$edad$sexo$");
             sw.WriteLine("$INICIAR$");
             sw.WriteLine("$CARTAS$");
@@ -116,6 +132,7 @@ namespace Proyecto_PRSP_Brisca
             sw.WriteLine("$CARTAS_RESTANTES$");
             sw.WriteLine("$RESULTADO$");
             sw.Flush();
+            */
             while (true)
             {
                 try
@@ -129,21 +146,13 @@ namespace Proyecto_PRSP_Brisca
                             switch (jugadoresInscritos)
                             {
                                 case 0:
-                                    jug1.nombre = subdatos[2];
-                                    int edad;
-                                    int.TryParse(subdatos[3], out edad);
-                                    jug1.edad = edad;
-                                    jug1.sexo = subdatos[4];
-                                    jug1.id = cli.Client.RemoteEndPoint.ToString();
-                                    jugadoresInscritos++;
-
-                                    sw.Flush();
+                                    registrarJugador(cli, subdatos);
                                     while (jugadoresInscritos != 2)
                                     {
                                         Thread.Sleep(1000);
-                                        sw.Write("$OK$");
-                                        sw.Flush();
                                     }
+                                    sw.Write("$OK$");
+                                    sw.Flush();
                                     break;
                                 case 1:
                                     jug2.nombre = subdatos[2];
@@ -325,7 +334,7 @@ namespace Proyecto_PRSP_Brisca
 
                         #region recuento
                         case "RESULTADO":
-                            sw.WriteLine("$OK${0}${1}$",puntosJug1,puntosJug2);
+                            sw.WriteLine("$OK${0}${1}$", puntosJug1, puntosJug2);
                             sw.Flush();
                             break;
                         #endregion
@@ -348,6 +357,8 @@ namespace Proyecto_PRSP_Brisca
                 }
             }
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {

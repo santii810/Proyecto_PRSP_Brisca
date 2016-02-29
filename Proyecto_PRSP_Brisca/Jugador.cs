@@ -12,6 +12,8 @@ namespace Proyecto_PRSP_Brisca
         public int edad { get; set; }
         public string sexo { get; set; }
         public string id { get; set; }
+        public string ip { get; set; }
+        public string puerto { get; set; }
         public bool listoParaIniciarJuego { get; set; }
         public List<string> cartas { get; set; } = new List<string>();
 

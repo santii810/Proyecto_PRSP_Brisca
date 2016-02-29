@@ -1,0 +1,14 @@
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\bin\Debug\Cliente.exe.config
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\bin\Debug\Cliente.exe
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\bin\Debug\Cliente.pdb
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\obj\Debug\Cliente.csprojResolveAssemblyReference.cache
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\obj\Debug\MainWindow.g.cs
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\obj\Debug\App.g.cs
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\obj\Debug\Cliente_MarkupCompile.cache
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\obj\Debug\Cliente_MarkupCompile.lref
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\obj\Debug\MainWindow.baml
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\obj\Debug\Cliente.g.resources
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\obj\Debug\Cliente.Properties.Resources.resources
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\obj\Debug\Cliente.csproj.GenerateResource.Cache
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\obj\Debug\Cliente.exe
+C:\Users\dam209\Repositorios\Proyecto_PRSP_Brisca\Cliente\obj\Debug\Cliente.pdb
