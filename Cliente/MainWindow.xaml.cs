@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,8 @@ namespace Cliente
         private string triunfo;
         delegate void DelegadoRespuesta();
         List<string> cartas = new List<string>();
+        int puertoEscucha;
+        private IPHostEntry ìhe;
 
         const int COD_INICIO = 0;
         const int COD_REGISTRO_OK = 1;
@@ -108,7 +111,9 @@ namespace Cliente
         {
             try
             {
-                client = new TcpClient(this.textBoxIp.Text, Convert.ToInt32( textBoxPuerto.Text));
+                ìhe = Dns.GetHostEntry(Dns.GetHostName());
+                puertoEscucha = Convert.ToInt32(textBoxPuerto.Text);
+                client = new TcpClient(this.textBoxIp.Text, 2000);
                 Ns = client.GetStream();
                 sr = new StreamReader(Ns);
                 sw = new StreamWriter(Ns);
@@ -133,9 +138,11 @@ namespace Cliente
                 {
                     nombre = textBoxNombre.Text,
                     edad = edad,
-                    sexo = sexo
+                    sexo = sexo,
+                    puerto = puertoEscucha,
+                    ip = ìhe.AddressList[0].ToString()
                 };
-                sw.WriteLine("$REGISTRAR${0}${1}${2}$", jugador.nombre, jugador.edad, jugador.sexo);
+                sw.WriteLine("$REGISTRAR${0}${1}${2}$", jugador.nombre, jugador.ip, jugador.puerto);
                 updateIU(COD_ESPERANDO);
                 dato = sr.ReadLine();
                 respuesta = dato.Split('$');
@@ -148,8 +155,6 @@ namespace Cliente
                     MessageBox.Show(respuesta[2]);
                     updateIU(COD_REGISTRO_NOK);
                 }
-
-
             }
             else
             {

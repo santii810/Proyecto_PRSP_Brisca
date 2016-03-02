@@ -155,12 +155,7 @@ namespace Proyecto_PRSP_Brisca
                                     sw.Flush();
                                     break;
                                 case 1:
-                                    jug2.nombre = subdatos[2];
-                                    int.TryParse(subdatos[3], out edad);
-                                    jug2.edad = edad;
-                                    jug2.sexo = subdatos[4];
-                                    jug2.id = cli.Client.RemoteEndPoint.ToString();
-                                    jugadoresInscritos++;
+                                    registrarJugador(cli, subdatos);
                                     sw.Write("$OK$");
                                     sw.Flush();
                                     break;
