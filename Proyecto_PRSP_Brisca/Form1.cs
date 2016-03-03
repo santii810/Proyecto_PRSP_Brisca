@@ -83,13 +83,11 @@ namespace Proyecto_PRSP_Brisca
         private void registrarJugador(TcpClient cli, string[] subdatos)
         {
             jug1.nombre = subdatos[2];
-            int edad;
-            int.TryParse(subdatos[3], out edad);
-            jug1.edad = edad;
-            jug1.sexo = subdatos[4];
+            int puerto;
+            int.TryParse(subdatos[4], out puerto);
+            jug1.puerto = puerto;
             jug1.id = cli.Client.RemoteEndPoint.ToString();
             jug1.ip = jug1.id.Split(':')[0];
-            jug1.puerto = subdatos[4];
             jugadoresInscritos++;
         }
 
@@ -120,26 +118,32 @@ namespace Proyecto_PRSP_Brisca
             NetworkStream ns = cli.GetStream();
             StreamReader sr = new StreamReader(ns);
             StreamWriter sw = new StreamWriter(ns);
-            /*
-            sw.WriteLine("$REGISTRAR$nombre$edad$sexo$");
-            sw.WriteLine("$INICIAR$");
-            sw.WriteLine("$CARTAS$");
-            sw.WriteLine("$TURNO$");
-            sw.WriteLine("$HECHAR_CARTA$carta$");
-            sw.WriteLine("$COGER_CARTA$");
-            sw.WriteLine("$ULTIMO_TURNO");
-            sw.WriteLine("$TRIUNFO$");
-            sw.WriteLine("$CARTAS_RESTANTES$");
-            sw.WriteLine("$RESULTADO$");
+
+            sw.WriteLine("#INSCRIBIR#nombre#IpOrigen#PuertoEscucha#");
+            sw.WriteLine("#JUGADA#{piedra/papel/tijera}#");
+            //          sw.WriteLine("#RESULTADOJUGADA#numeroJugada");
+            sw.WriteLine("#PUNTUACION#");
             sw.Flush();
-            */
             while (true)
             {
                 try
                 {
                     data = sr.ReadLine();
-                    string[] subdatos = data.Split('$');
-                    switch (subdatos[1])
+                    string[] subdatos = new string[5]; // = data.Split('$');
+               
+                    if (subdatos[1] == "REGISTRAR")
+                    {
+                        registrarJugador(cli, subdatos);
+                        while (jugadoresInscritos != 2)
+                        {
+                            Thread.Sleep(1000);
+                        }
+                        sw.Write("$OK$");
+                        sw.Flush();
+                        break;
+                    }
+                   // switch (subdatos[1])
+                         switch ("REGISTRAR")
                     {
                         #region inscribir
                         case "REGISTRAR":
